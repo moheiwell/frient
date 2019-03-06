@@ -14,6 +14,26 @@
     <name>frient-web</name>
     <description>Demo project for Spring Boot</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.harrymark.wechatapp</groupId>
+            <artifactId>frient-service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.harrymark.wechatapp</groupId>
+            <artifactId>frient-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.harrymark.wechatapp</groupId>
+            <artifactId>frient-bean</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
     <properties>
         <java.version>1.8</java.version>
     </properties>
