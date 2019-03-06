@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/frient-service/pom.xml" />
         <option value="$PROJECT_DIR$/frient-web/pom.xml" />
         <option value="$PROJECT_DIR$/frient-common/pom.xml" />
+        <option value="$PROJECT_DIR$/frient-bean/pom.xml" />
       </list>
     </option>
   </component>

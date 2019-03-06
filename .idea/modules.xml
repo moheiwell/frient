@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/frient.iml" filepath="$PROJECT_DIR$/frient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/frient-bean/frient-bean.iml" filepath="$PROJECT_DIR$/frient-bean/frient-bean.iml" />
+      <module fileurl="file://$PROJECT_DIR$/frient-common/frient-common.iml" filepath="$PROJECT_DIR$/frient-common/frient-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/frient-dao/frient-dao.iml" filepath="$PROJECT_DIR$/frient-dao/frient-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/frient-service/frient-service.iml" filepath="$PROJECT_DIR$/frient-service/frient-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/frient-web/frient-web.iml" filepath="$PROJECT_DIR$/frient-web/frient-web.iml" />
+    </modules>
+  </component>
+</project>

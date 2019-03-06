@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="frient-bean" />
         <module name="frient-common" />
         <module name="frient-dao" />
         <module name="frient-service" />
@@ -13,7 +14,13 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="frient" target="1.8" />
+      <module name="frient-bean" target="1.8" />
+      <module name="frient-common" target="1.8" />
+      <module name="frient-dao" target="1.8" />
+      <module name="frient-service" target="1.8" />
       <module name="frient-utils" target="1.8" />
+      <module name="frient-web" target="1.8" />
       <module name="utils" target="1.5" />
     </bytecodeTargetLevel>
   </component>
