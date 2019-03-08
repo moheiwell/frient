@@ -13,5 +13,4 @@ public class FrientWebApplication {
     public static void main(String[] args) {
         SpringApplication.run(FrientWebApplication.class, args);
     }
-
 }

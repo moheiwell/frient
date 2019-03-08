@@ -9,8 +9,8 @@ import org.springframework.context.annotation.PropertySources;
  */
 
 @Configuration
-@PropertySources(
-        @PropertySource(value = {"classpath:config-db.properties"})
-)
+@PropertySources({
+        @PropertySource("classpath:config-db.properties")
+})
 public class PropertySourcesConfigClass {
 }

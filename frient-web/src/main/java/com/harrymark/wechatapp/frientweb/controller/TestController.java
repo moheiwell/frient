@@ -2,6 +2,7 @@ package com.harrymark.wechatapp.frientweb.controller;
 
 import com.google.gson.Gson;
 import com.harrymark.wechatapp.frientbean.po.TestJdbc;
+import com.harrymark.wechatapp.frientcommon.utils.RedisUtil;
 import com.harrymark.wechatapp.frientservice.service.TestService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,13 +25,16 @@ public class TestController {
     @Autowired
     private TestService testService;
 
+    @Autowired
+    private RedisUtil redisUtil;
+
     @RequestMapping("/")
     @ResponseBody
     public String test() {
-        logger.info("test");
-        logger.error("test error");
         List<TestJdbc> testJdbcs = testService.getAll();
         Gson gson = new Gson();
-        return gson.toJson(testJdbcs);
+        String json = gson.toJson(testJdbcs.get(0));
+        redisUtil.set("test", json);
+        return redisUtil.get("test").toString();
     }
 }
