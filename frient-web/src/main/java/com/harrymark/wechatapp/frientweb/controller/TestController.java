@@ -8,6 +8,7 @@ import com.harrymark.wechatapp.frientservice.service.TestService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -29,7 +30,7 @@ public class TestController {
 
     private final static Logger logger = LoggerFactory.getLogger(TestController.class);
 
-    @Autowired
+    @Autowired()
     private TestService testService;
 
     @Autowired
@@ -54,7 +55,7 @@ public class TestController {
     public String httpTest(){
         MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
         map.add("name", "马浩伟");
-        TestJdbc jsonResult = httpUtil.postApiObject("http://10.100.60.142:8080/test", TestJdbc.class, map);
+        TestJdbc jsonResult = httpUtil.postApiObjectHttps("https://www.baidu.com", TestJdbc.class, map);
 
         return jsonResult.toString();
     }
