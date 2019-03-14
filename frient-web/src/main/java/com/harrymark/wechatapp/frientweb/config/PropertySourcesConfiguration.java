@@ -10,7 +10,8 @@ import org.springframework.context.annotation.PropertySources;
 
 @Configuration
 @PropertySources({
-        @PropertySource("classpath:config-db.properties")
+        @PropertySource("classpath:config-db.properties"),
+        @PropertySource("classpath:key-value.properties")
 })
 public class PropertySourcesConfiguration {
 }
