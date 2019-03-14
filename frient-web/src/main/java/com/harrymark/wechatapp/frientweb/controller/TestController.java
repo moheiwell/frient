@@ -1,7 +1,10 @@
 package com.harrymark.wechatapp.frientweb.controller;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.harrymark.wechatapp.frientbean.dto.request.UserLoginRequestDTO;
 import com.harrymark.wechatapp.frientbean.po.TestJdbc;
+import com.harrymark.wechatapp.frientcommon.httpUtils.BufferRequest;
 import com.harrymark.wechatapp.frientcommon.httpUtils.HttpUtil;
 import com.harrymark.wechatapp.frientcommon.utils.RedisUtil;
 import com.harrymark.wechatapp.frientservice.service.TestService;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 /**
@@ -62,7 +66,21 @@ public class TestController {
         List<TestJdbc> testJdbcs = testService.getAll();
         Gson gson = new Gson();
 
-        return null;
+        BufferRequest<UserLoginRequestDTO> request = new BufferRequest<>();
+        UserLoginRequestDTO body = new UserLoginRequestDTO();
+        body.setJs_code("normal");
+        request.setBody(body);
+        BufferRequest.Header header = new BufferRequest.Header();
+        header.setClientInfo("111111");
+        header.setFaceCode("sdfsdf");
+        header.setToken("dsfasdfasd fasdfasdf");
+        header.setUserId("001");
+        request.setHeader(header);
+
+        String jsonStr = gson.toJson(request);
+        BufferRequest<UserLoginRequestDTO> result = gson.fromJson(jsonStr, new TypeToken<BufferRequest<UserLoginRequestDTO>>(){}.getType());
+        UserLoginRequestDTO resultDto = result.getBody();
+        return jsonStr;
     }
 
 }
