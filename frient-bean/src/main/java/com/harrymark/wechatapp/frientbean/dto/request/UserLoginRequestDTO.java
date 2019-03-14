@@ -8,7 +8,7 @@ import lombok.Data;
  */
 
 @Data
-@Calibrator(location = "com.harrymark.wechatapp.frientbean.dto.request.UserLoginRequestValidator")
+@Calibrator(location = "com.harrymark.wechatapp.frientbean.validator.UserLoginRequestValidator")
 public class UserLoginRequestDTO {
     private String js_code;
 }

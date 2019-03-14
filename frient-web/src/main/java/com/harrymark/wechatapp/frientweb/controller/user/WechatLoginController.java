@@ -30,6 +30,7 @@ public class WechatLoginController {
 
     private static final Logger logger = LoggerFactory.getLogger(WechatLoginController.class);
 
+    @Autowired
     private Gson gson;
 
     @Autowired
@@ -43,9 +44,10 @@ public class WechatLoginController {
 
         try {
             BufferRequest<UserLoginRequestDTO> request = gson.fromJson(reqData, new TypeToken<BufferRequest<UserLoginRequestDTO>>(){}.getType());
-            CheckResult checkResult = CheckHander.hander(request);
+            CheckResult checkResult = CheckHander.hander(request.getBody());
 
             if(checkResult.getResult() == ResultEnum.FAIL){
+                logger.error("调用code2Session接口登陆，参数校验错误！" + checkResult.getResultMsg());
                 response.setResult(HttpResultEnum.FAILED);
                 response.setBody(new UserLoginResponseDTO());
                 return gson.toJson(response);
