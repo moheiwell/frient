@@ -1,4 +1,4 @@
-package com.harrymark.wechatapp.frientcommon.utils;
+package com.harrymark.wechatapp.frientcommon.httpUtils;
 
 import com.google.gson.Gson;
 import org.slf4j.Logger;

@@ -2,13 +2,12 @@ package com.harrymark.wechatapp.frientweb.controller;
 
 import com.google.gson.Gson;
 import com.harrymark.wechatapp.frientbean.po.TestJdbc;
-import com.harrymark.wechatapp.frientcommon.utils.HttpUtil;
+import com.harrymark.wechatapp.frientcommon.httpUtils.HttpUtil;
 import com.harrymark.wechatapp.frientcommon.utils.RedisUtil;
 import com.harrymark.wechatapp.frientservice.service.TestService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -16,10 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by haoweima on 2019/3/7.
