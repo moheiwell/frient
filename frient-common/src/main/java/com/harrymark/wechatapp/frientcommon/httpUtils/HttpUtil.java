@@ -31,7 +31,8 @@ public class HttpUtil {
     @Qualifier("httpsRestTemplate")
     private RestTemplate httpsRestTemplate;
 
-    private Gson gson = new Gson();
+    @Autowired
+    private Gson gson;
 
     /**
      * post请求api cloud接口
