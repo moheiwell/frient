@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.harrymark.wechatapp.frientdao.dao.UserInfoMapper">
+
+    <resultMap id="userInfo" type="com.harrymark.wechatapp.frientbean.po.UserInfoPO">
+        <id property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="openId" column="open_id" jdbcType="VARCHAR"/>
+        <result property="unionId" column="union_id" jdbcType="VARCHAR"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+        <result property="wechatName" column="wechat_name" jdbcType="VARCHAR"/>
+        <result property="loginTime" column="login_time" jdbcType="TIMESTAMP"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <insert id="insertUserInfo" parameterType="com.harrymark.wechatapp.frientbean.po.UserInfoPO">
+        INSERT INTO user_info
+        <trim prefix="set" suffixOverrides=",">
+            <if test="openId != null and openId != ''">
+                open_id = #{openId},
+            </if>
+            <if test="unionId != null and unionId != ''">
+                union_id = #{unionId},
+            </if>
+            <if test="userName != null and userName != ''">
+                user_name = #{userName},
+            </if>
+            <if test="wechatName != null and wechatName != ''">
+                wechat_name = #{wechatName},
+            </if>
+            <if test="loginTime != null">
+                login_time = #{loginTime},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime}
+            </if>
+        </trim>
+    </insert>
+
+    <select id="getUserInfoByOpenId" parameterType="java.lang.String" resultMap="userInfo">
+        SELECT * FROM user_info WHERE open_id = #{openId} limit 1;
+    </select>
+
+    <update id="updateUserInfo" parameterType="com.harrymark.wechatapp.frientbean.po.UserInfoPO">
+        UPDATE user_info
+        <trim prefix="set" suffixOverrides=",">
+            <if test="openId != null and openId != ''">
+                open_id = #{openId},
+            </if>
+            <if test="unionId != null and unionId != ''">
+                union_id = #{unionId},
+            </if>
+            <if test="userName != null and userName != ''">
+                user_name = #{userName},
+            </if>
+            <if test="wechatName != null and wechatName != ''">
+                wechat_name = #{wechatName},
+            </if>
+            <if test="loginTime != null">
+                login_time = #{loginTime},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime}
+            </if>
+        </trim>
+        WHERE user_id = #{userId}
+    </update>
+
+</mapper>

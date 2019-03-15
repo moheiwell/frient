@@ -8,4 +8,6 @@ import lombok.Data;
 
 @Data
 public class UserLoginResponseDTO {
+    private String session_key;
+    private String openid;
 }

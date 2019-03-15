@@ -36,6 +36,7 @@ public class BufferResponse<T> {
     }
 
     public void setResult(HttpResultEnum result){
+        if(header == null) header = new Header();
         header.setResponseCode(result.getCode());
         header.setResponseMsg(result.getMsg());
     }

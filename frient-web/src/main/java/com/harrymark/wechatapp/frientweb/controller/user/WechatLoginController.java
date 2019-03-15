@@ -53,11 +53,11 @@ public class WechatLoginController {
                 return gson.toJson(response);
             }
 
-            wechatLoginService.getOpenId(request, response);
+            response = wechatLoginService.getOpenId(request, response);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info("调用code2Session接口登陆失败" + e);
         }
-        return null;
+        return response.getHeader().getResponseMsg();
     }
 }

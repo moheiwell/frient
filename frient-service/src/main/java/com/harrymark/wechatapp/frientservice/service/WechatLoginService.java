@@ -10,5 +10,5 @@ import com.harrymark.wechatapp.frientcommon.httpUtils.BufferResponse;
  */
 public interface WechatLoginService {
 
-    void getOpenId(BufferRequest<UserLoginRequestDTO> request, BufferResponse<UserLoginResponseDTO> response);
+    BufferResponse<UserLoginResponseDTO> getOpenId(BufferRequest<UserLoginRequestDTO> request, BufferResponse<UserLoginResponseDTO> response);
 }

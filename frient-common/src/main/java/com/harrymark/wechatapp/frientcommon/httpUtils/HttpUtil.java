@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
@@ -47,7 +46,7 @@ public class HttpUtil {
         ResponseEntity<String> responseEntity = httpRestTemplate.postForEntity(url, object, String.class);
         T response = null;
         if (responseEntity.getStatusCode().equals(HttpStatus.OK)) {
-            logger.info("http请求" + url + "成功,状态:" + responseEntity.getStatusCodeValue() + ",响应body:" + responseEntity.getBody());
+            logger.info("请求" + url + "成功,状态:" + responseEntity.getStatusCodeValue() + ",响应body:" + responseEntity.getBody());
             if ("".equals(responseEntity.getBody())) {
                 return null;
             }
@@ -57,7 +56,7 @@ public class HttpUtil {
                 logger.info("解析json失败:" + e.getMessage());
             }
         } else {
-            logger.error("http请求" + url + "失败,状态:" + responseEntity.getStatusCodeValue());
+            logger.error("请求" + url + "失败,状态:" + responseEntity.getStatusCodeValue());
         }
         return response;
     }
@@ -70,13 +69,19 @@ public class HttpUtil {
      * @param paramMap
      * @return
      */
-    public <T> T getApiObject(String url, Class<T> clazz, MultiValueMap<String, ?> paramMap) {
+    public <T> T getApiObject(String url, Class<T> clazz, Map<String, ?> paramMap) {
         logger.info("请求url:" + url + ",入参:" + gson.toJson(paramMap, Map.class));
         ResponseEntity<String> responseEntity;
-        responseEntity = httpRestTemplate.getForEntity(url, String.class, paramMap);
+        StringBuffer sb = new StringBuffer("?");
+        for(Map.Entry<String, ?> entry : paramMap.entrySet()) {
+            sb.append(entry.getKey() + "=" + entry.getValue());
+            sb.append("&");
+        }
+        String getUrl = url + sb.toString().substring(0, sb.length() - 1);
+        responseEntity = httpRestTemplate.getForEntity(getUrl, String.class);
         T response = null;
         if (responseEntity.getStatusCode().equals(HttpStatus.OK)) {
-            logger.info("http请求" + url + "成功,状态:" + responseEntity.getStatusCodeValue() + ",响应body:" + responseEntity.getBody());
+            logger.info("请求" + url + "成功,状态:" + responseEntity.getStatusCodeValue() + ",响应body:" + responseEntity.getBody());
             if ("".equals(responseEntity.getBody())) {
                 return null;
             }
@@ -86,7 +91,7 @@ public class HttpUtil {
                 logger.info("解析json失败:" + e.getMessage());
             }
         } else {
-            logger.error("http请求" + url + "失败,状态:" + responseEntity.getStatusCodeValue());
+            logger.error("请求" + url + "失败,状态:" + responseEntity.getStatusCodeValue());
         }
         return response;
     }
@@ -106,7 +111,7 @@ public class HttpUtil {
         ResponseEntity<String> responseEntity = httpsRestTemplate.postForEntity(url, object, String.class);
         T response = null;
         if (responseEntity.getStatusCode().equals(HttpStatus.OK)) {
-            logger.info("http请求" + url + "成功,状态:" + responseEntity.getStatusCodeValue() + ",响应body:" + responseEntity.getBody());
+            logger.info("请求" + url + "成功,状态:" + responseEntity.getStatusCodeValue() + ",响应body:" + responseEntity.getBody());
             if ("".equals(responseEntity.getBody())) {
                 return null;
             }
@@ -116,7 +121,7 @@ public class HttpUtil {
                 logger.info("解析json失败:" + e.getMessage());
             }
         } else {
-            logger.error("http请求" + url + "失败,状态:" + responseEntity.getStatusCodeValue());
+            logger.error("请求" + url + "失败,状态:" + responseEntity.getStatusCodeValue());
         }
         return response;
     }
@@ -129,13 +134,19 @@ public class HttpUtil {
      * @param paramMap
      * @return
      */
-    public <T> T getApiObjectHttps(String url, Class<T> clazz, MultiValueMap<String, ?> paramMap) {
+    public <T> T getApiObjectHttps(String url, Class<T> clazz, Map<String, ?> paramMap) {
         logger.info("请求url:" + url + ",入参:" + gson.toJson(paramMap, Map.class));
         ResponseEntity<String> responseEntity;
-        responseEntity = httpsRestTemplate.getForEntity(url, String.class, paramMap);
+        StringBuffer sb = new StringBuffer("?");
+        for(Map.Entry<String, ?> entry : paramMap.entrySet()) {
+            sb.append(entry.getKey() + "=" + entry.getValue());
+            sb.append("&");
+        }
+        String getUrl = url + sb.toString().substring(0, sb.length() - 1);
+        responseEntity = httpsRestTemplate.getForEntity(getUrl, String.class);
         T response = null;
         if (responseEntity.getStatusCode().equals(HttpStatus.OK)) {
-            logger.info("http请求" + url + "成功,状态:" + responseEntity.getStatusCodeValue() + ",响应body:" + responseEntity.getBody());
+            logger.info("请求" + url + "成功,状态:" + responseEntity.getStatusCodeValue() + ",响应body:" + responseEntity.getBody());
             if ("".equals(responseEntity.getBody())) {
                 return null;
             }
@@ -145,7 +156,7 @@ public class HttpUtil {
                 logger.info("解析json失败:" + e.getMessage());
             }
         } else {
-            logger.error("http请求" + url + "失败,状态:" + responseEntity.getStatusCodeValue());
+            logger.error("请求" + url + "失败,状态:" + responseEntity.getStatusCodeValue());
         }
         return response;
     }

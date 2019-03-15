@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by haoweima on 2019/3/7.
@@ -53,9 +55,9 @@ public class TestController {
     @RequestMapping("/http")
     @ResponseBody
     public String httpTest(){
-        MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
-        map.add("name", "马浩伟");
-        TestJdbc jsonResult = httpUtil.postApiObjectHttps("https://www.baidu.com", TestJdbc.class, map);
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", "马浩伟");
+        TestJdbc jsonResult = httpUtil.getApiObject("http://localhost:8080/test", TestJdbc.class, map);
 
         return jsonResult.toString();
     }
