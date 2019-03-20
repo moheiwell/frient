@@ -5,9 +5,15 @@
     <resultMap id="userInfo" type="com.harrymark.wechatapp.frientbean.po.UserInfoPO">
         <id property="userId" column="user_id" jdbcType="INTEGER"/>
         <result property="openId" column="open_id" jdbcType="VARCHAR"/>
+        <result property="sessionKey" column="session_key" jdbcType="VARCHAR"/>
         <result property="unionId" column="union_id" jdbcType="VARCHAR"/>
-        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
-        <result property="wechatName" column="wechat_name" jdbcType="VARCHAR"/>
+        <result property="nickName" column="nick_name" jdbcType="VARCHAR"/>
+        <result property="avatarUrl" column="avatar_url" jdbcType="VARCHAR"/>
+        <result property="gender" column="gender" jdbcType="INTEGER"/>
+        <result property="country" column="country" jdbcType="VARCHAR"/>
+        <result property="province" column="province" jdbcType="VARCHAR"/>
+        <result property="city" column="city" jdbcType="VARCHAR"/>
+        <result property="language" column="language" jdbcType="VARCHAR"/>
         <result property="loginTime" column="login_time" jdbcType="TIMESTAMP"/>
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
     </resultMap>
@@ -18,14 +24,32 @@
             <if test="openId != null and openId != ''">
                 open_id = #{openId},
             </if>
+            <if test="sessionKey != null and sessionKey != ''">
+                session_key = #{sessionKey},
+            </if>
             <if test="unionId != null and unionId != ''">
                 union_id = #{unionId},
             </if>
-            <if test="userName != null and userName != ''">
-                user_name = #{userName},
+            <if test="nickName != null and nickName != ''">
+                nick_name = #{nickName},
             </if>
-            <if test="wechatName != null and wechatName != ''">
-                wechat_name = #{wechatName},
+            <if test="avatarUrl != null and avatarUrl != ''">
+                avatar_url = #{avatarUrl},
+            </if>
+            <if test="gender != null and gender != ''">
+                gender = #{gender},
+            </if>
+            <if test="country != null and country != ''">
+                country = #{country},
+            </if>
+            <if test="province != null and province != ''">
+                province = #{province},
+            </if>
+            <if test="city != null and city != ''">
+                city = #{city},
+            </if>
+            <if test="language != null and language != ''">
+                `language` = #{language},
             </if>
             <if test="loginTime != null">
                 login_time = #{loginTime},
@@ -46,14 +70,32 @@
             <if test="openId != null and openId != ''">
                 open_id = #{openId},
             </if>
+            <if test="sessionKey != null and sessionKey != ''">
+                session_key = #{sessionKey},
+            </if>
             <if test="unionId != null and unionId != ''">
                 union_id = #{unionId},
             </if>
-            <if test="userName != null and userName != ''">
-                user_name = #{userName},
+            <if test="nickName != null and nickName != ''">
+                nick_name = #{nickName},
             </if>
-            <if test="wechatName != null and wechatName != ''">
-                wechat_name = #{wechatName},
+            <if test="avatarUrl != null and avatarUrl != ''">
+                avatar_url = #{avatarUrl},
+            </if>
+            <if test="gender != null and gender != ''">
+                gender = #{gender},
+            </if>
+            <if test="country != null and country != ''">
+                country = #{country},
+            </if>
+            <if test="province != null and province != ''">
+                province = #{province},
+            </if>
+            <if test="city != null and city != ''">
+                city = #{city},
+            </if>
+            <if test="language != null and language != ''">
+                `language` = #{language},
             </if>
             <if test="loginTime != null">
                 login_time = #{loginTime},
