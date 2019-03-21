@@ -5,6 +5,7 @@ import com.harrymark.wechatapp.frientbean.dto.request.UserLoginRequestDTO;
 import com.harrymark.wechatapp.frientbean.dto.response.UserInfoResponseDTO;
 import com.harrymark.wechatapp.frientbean.dto.response.UserLoginResponseDTO;
 import com.harrymark.wechatapp.frientbean.po.UserInfoPO;
+import com.harrymark.wechatapp.frientbean.wechatdto.Code2SessionResponse;
 import com.harrymark.wechatapp.frientcommon.httpUtils.BufferRequest;
 import com.harrymark.wechatapp.frientcommon.httpUtils.BufferResponse;
 import com.harrymark.wechatapp.frientcommon.httpUtils.HttpResultEnum;
@@ -48,6 +49,12 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Value("${user.login.url}")
     private String url;
 
+    /**
+     * 请求微信服务器，获得取到openid和SessionKey
+     * @param request
+     * @param response
+     * @return
+     */
     @Override
     public BufferResponse<UserLoginResponseDTO> getOpenId(BufferRequest<UserLoginRequestDTO> request, BufferResponse<UserLoginResponseDTO> response) {
         Map<String, Object> reqMap = new HashMap<>();
@@ -55,29 +62,33 @@ public class UserInfoServiceImpl implements UserInfoService {
         reqMap.put("secret", appSecret);
         reqMap.put("js_code", request.getBody().getJs_code());
         reqMap.put("grant_type", "authorization_code");
-        UserLoginResponseDTO respBody = httpUtil.getApiObjectHttps(url, UserLoginResponseDTO.class, reqMap);
-        if (respBody == null) {
+        Code2SessionResponse httpRes = httpUtil.getApiObjectHttps(url, Code2SessionResponse.class, reqMap);
+        if (httpRes == null || (httpRes.getErrcode() != null && !"0".equals(httpRes.getErrcode()))) {
             response.setResult(HttpResultEnum.FAILED);
             return response;
         }
 
-        UserInfoPO userInfoPO = userInfoMapper.getUserInfoByOpenId(respBody.getOpenid());
+        UserLoginResponseDTO resBody = new UserLoginResponseDTO();
+        UserInfoPO userInfoPO = userInfoMapper.getUserInfoByOpenId(httpRes.getOpenid());
         if(userInfoPO == null){
             //新用户登陆
             userInfoPO = new UserInfoPO();
-            userInfoPO.setOpenId(respBody.getOpenid());
-            userInfoPO.setSessionKey(respBody.getSession_key());
+            userInfoPO.setOpenId(httpRes.getOpenid());
+            userInfoPO.setSessionKey(httpRes.getSession_key());
             Date time = new Date();
             userInfoPO.setCreateTime(time);
             userInfoPO.setLoginTime(time);
             userInfoMapper.insertUserInfo(userInfoPO);
+            resBody.setUserId(userInfoPO.getUserId());
         }else{
             //老用户登陆
-            userInfoPO.setSessionKey(respBody.getSession_key());
+            userInfoPO.setSessionKey(httpRes.getSession_key());
             userInfoPO.setLoginTime(new Date());
             userInfoMapper.updateUserInfo(userInfoPO);
+            resBody.setUserId(userInfoPO.getUserId());
         }
-        response.setBody(respBody);
+
+        response.setBody(resBody);
         response.setResult(HttpResultEnum.SUCCESS);
         return response;
     }

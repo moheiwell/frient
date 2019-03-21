@@ -18,7 +18,7 @@
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
-    <insert id="insertUserInfo" parameterType="com.harrymark.wechatapp.frientbean.po.UserInfoPO">
+    <insert id="insertUserInfo" parameterType="com.harrymark.wechatapp.frientbean.po.UserInfoPO" useGeneratedKeys="true" keyProperty="userId" keyColumn="user_id">
         INSERT INTO user_info
         <trim prefix="set" suffixOverrides=",">
             <if test="openId != null and openId != ''">
