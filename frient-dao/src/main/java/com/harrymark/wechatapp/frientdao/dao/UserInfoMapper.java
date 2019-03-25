@@ -16,4 +16,6 @@ public interface UserInfoMapper {
     UserInfoPO getUserInfoByOpenId(String openId);
 
     int updateUserInfo(UserInfoPO userInfoPO);
+
+    UserInfoPO getUserInfoByUserId(String userId);
 }

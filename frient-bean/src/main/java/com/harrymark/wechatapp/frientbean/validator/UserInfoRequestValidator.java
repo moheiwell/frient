@@ -8,7 +8,7 @@ import com.haoweima.utils.validate.validator.Validator;
  * Created by haoweima on 2019/3/18.
  */
 public enum UserInfoRequestValidator implements Validator {
-    userid,
+    userId,
     userInfo,
     rawData,
     signature,

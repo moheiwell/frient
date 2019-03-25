@@ -79,6 +79,8 @@ public class WechatLoginController {
                 response.setBody(new UserInfoResponseDTO());
                 return gson.toJson(response);
             }
+
+            response = userInfoService.saveUserInfo(request, response);
         }catch (Exception e) {
             logger.info("调用用户信息入库接口失败" + e);
         }
