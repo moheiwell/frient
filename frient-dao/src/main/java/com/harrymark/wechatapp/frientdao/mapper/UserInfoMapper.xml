@@ -8,6 +8,7 @@
         <result property="sessionKey" column="session_key" jdbcType="VARCHAR"/>
         <result property="unionId" column="union_id" jdbcType="VARCHAR"/>
         <result property="nickName" column="nick_name" jdbcType="VARCHAR"/>
+        <result property="userLevel" column="user_level" jdbcType="INTEGER"/>
         <result property="avatarUrl" column="avatar_url" jdbcType="VARCHAR"/>
         <result property="gender" column="gender" jdbcType="INTEGER"/>
         <result property="country" column="country" jdbcType="VARCHAR"/>
@@ -32,6 +33,9 @@
             </if>
             <if test="nickName != null and nickName != ''">
                 nick_name = #{nickName},
+            </if>
+            <if test="userLevel != null and userLevel != ''">
+                user_level = #{userLevel},
             </if>
             <if test="avatarUrl != null and avatarUrl != ''">
                 avatar_url = #{avatarUrl},
@@ -78,6 +82,9 @@
             </if>
             <if test="nickName != null and nickName != ''">
                 nick_name = #{nickName},
+            </if>
+            <if test="userLevel != null and userLevel != ''">
+                user_level = #{userLevel},
             </if>
             <if test="avatarUrl != null and avatarUrl != ''">
                 avatar_url = #{avatarUrl},

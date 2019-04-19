@@ -15,6 +15,7 @@ public class UserInfoPO {
     private String sessionKey;//加密密钥
     private String unionId;//支付后获得
     private String nickName;//用户昵称
+    private int userLevel;//用户等级
     private String avatarUrl;//用户头像图片的 URL
     private int gender;//用户性别 1男性 2女性
     private String country;//用户所在国家
