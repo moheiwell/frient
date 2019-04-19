@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * Created by haoweima on 2019/4/18.
@@ -74,6 +75,7 @@ public class UserLevelServiceImpl implements UserLevelService {
         userLevelDetail.setUserId(userId);
         userLevelDetail.setOldScore(userInfoPO.getUserLevel());
         userLevelDetail.setNowScore(score);
+        userLevelDetail.setCreateTime(new Date());
         userLevelMapper.insertUserLevelDetail(userLevelDetail);
 
         UserInfoPO updateScore = new UserInfoPO();
