@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.harrymark.wechatapp.frientdao.dao.UserLevelMapper">
-    <insert id="insertUserLevelDetail" parameterType="com.harrymark.wechatapp.frientbean.po.UserLevelDetailPO">
-        INSERT INTO user_level_detail (user_id, order_id, order_money, old_score, now_score, create_time)
-        VALUES (#{userId}, #{orderId}, #{orderMoney}, #{oldScore}, #{nowScore}, #{createTime})
-    </insert>
-</mapper>
